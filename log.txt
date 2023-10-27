@@ -1,0 +1,9 @@
+New character created: Raistlin
+Class: Wielder
+Stats: {'Strength': 5, 'Dexterity': 10, 'Intelligence': 21, 'Wisdom': 17, 'Constitution': 7}
+Derived Stats: Defense: 11
+Attack: 10
+Hit Points: 11
+Magic Points: 14
+Password: Shallan74!
+
