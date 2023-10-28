@@ -31,7 +31,7 @@ class GameItems:
         self.material = material
         self.weight = weight
         self.image = image # This is the image that will be displayed when the item is displayed in the game
-        self.worldTheme = ThemeModel.Theme(worldTheme)
+        self.worldTheme = Theme(worldTheme)
         self.rarity = rarity
 
     # __str__ is used to print the object in a more readable format

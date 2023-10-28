@@ -43,9 +43,9 @@ class Mob:
         self.level = level
         self.experience = experience
         self.gold = gold
-        self.worldTheme = ThemeModel.Theme(worldTheme)
+        self.worldTheme = Theme(worldTheme)
         self.currentRoomLocation = currentRoomLocation
-        self.inventory = InventoryModel()
+        self.inventory = Inventory()
         self.skills = []
     
     @classmethod
