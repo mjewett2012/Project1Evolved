@@ -556,11 +556,13 @@ class DatabaseHandler:
         data = {
             "name": room.name,
             "description": room.description,
+            "theme": str(room.theme),  # Convert the 'Theme' enum to a string
             "location": f"{room.x},{room.y}",
             "mobs": ",".join(map(str, room.mobs)),
             "inventory": ",".join(map(str, room.inventory))
         }
         self.insert_into_table("rooms", data)
+
     
     def fetch_room_by_location(self, location):
         self.cursor.execute("SELECT * FROM rooms WHERE location=?", (location,))
@@ -578,7 +580,14 @@ class DatabaseHandler:
             
             return room_data
         return None
-        
+
+    def check_for_room_one(self):
+        self.cursor.execute("SELECT * FROM rooms WHERE roomNum=1")
+        row = self.cursor.fetchone()
+        if row:
+            return True
+        return False
+            
     def close(self):
         self.conn.close()
 

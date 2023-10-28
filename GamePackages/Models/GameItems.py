@@ -13,14 +13,13 @@
 #              The GameItems class has a subclass called Currency that is used to create objects
 #              that represent currency in the game
 
-from CharacterModel import playerCharacter
-from InventoryModel import Inventory
-import ThemeModel
-import DamageTypeModel
-import EffectModel
-import ArmorTypeModel
-import WeaponTypeModel
-
+from .CharacterModel import playerCharacter
+from .InventoryModel import Inventory
+from .ThemeModel import Theme
+from .DamageTypeModel import DamageType
+from .EffectModel import Effect
+from .ArmorTypeModel import ArmorType
+from .WeaponTypeModel import WeaponType
 
 class GameItems:
     def __init__(self, iNumber, name, description, price, quantity, material, weight, image, worldTheme, rarity):

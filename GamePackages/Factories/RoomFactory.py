@@ -1,7 +1,8 @@
 import random
-from Models import RoomModel, ThemeModel
-from DatabaseHandler import DatabaseHandler
-from TextGenerator import text_generate  # Assuming text_generate is in TextGenerator
+from GamePackages.Models.RoomModel import Room
+from GamePackages.Models.ThemeModel import Theme
+from GamePackages.DatabaseHandler import DatabaseHandler
+from GamePackages.Factories.TextGenerator import text_generate  # Assuming text_generate is in TextGenerator
 
 class RoomFactory:
     room_grid = {}
@@ -16,7 +17,7 @@ class RoomFactory:
         # Check the database if the room exists
         room_data = RoomFactory.db_handler.fetch_room_by_location(f"{x},{y}")
         if room_data:
-            room = RoomModel.Room()
+            room = Room()
             room.rNumber = room_data["roomNum"]
             room.name = room_data["name"]
             room.description = room_data["description"]
@@ -30,7 +31,7 @@ class RoomFactory:
 
     @staticmethod
     def generate_room(x, y):
-        theme = random.choice(list(ThemeModel.Theme))
+        theme = random.choice(list(Theme))
         size = random.randint(20, 50)
         RoomFactory.generate_theme_area(theme, size)
         return RoomFactory.room_grid.get((x, y))
@@ -42,8 +43,8 @@ class RoomFactory:
                 x = RoomFactory.current_coordinates[0] + i
                 y = RoomFactory.current_coordinates[1] + j
                 if (x, y) not in RoomFactory.room_grid:
-                    room = RoomModel.Room()
-                    room.name, room.description = text_generate(RoomModel.Room, theme)  # Using text_generate to get the room name and description
+                    room = Room()
+                    room.name, room.description = text_generate(Room, theme)  # Using text_generate to get the room name and description
                     room.theme = theme
                     room.x = x
                     room.y = y

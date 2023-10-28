@@ -5,29 +5,32 @@
 
 import random
 import os
-from Models import RoomModel
-from Models import MobModel
-from Models import ItemModel
+from GamePackages.Models.RoomModel import Room
+from GamePackages.Models.Mob import Mob
+from GamePackages.Models.GameItems import GameItems, Weapon, Armor, Consumable, Container, Currency
+from GamePackages.Models.ThemeModel import Theme
 
 def text_generate(objectClass, theme, rarity=0):
+    print("Debug: Received theme:", theme)
+    print("Debug: Type of theme:", type(theme))
     name = ""
     description = ""
 
-    if objectClass == RoomModel.Room:
+    if objectClass == Room:
         name, description = room_text_generate(theme)
-    elif objectClass == MobModel.Mob:
+    elif objectClass == Mob:
         name, description = mob_text_generate(theme)
-    elif objectClass == ItemModel.Item:
+    elif objectClass == GameItems:
         name, description = item_text_generate(theme, rarity)
-    elif objectClass == ItemModel.Weapon:
+    elif objectClass == Weapon:
         name, description = weapon_text_generate(theme, rarity)
-    elif objectClass == ItemModel.Armor:
+    elif objectClass == Armor:
         name, description = armor_text_generate(theme, rarity)
-    elif objectClass == ItemModel.Consumable:
+    elif objectClass == Consumable:
         name, description = consumable_text_generate(theme, rarity)
-    elif objectClass == ItemModel.Container:
+    elif objectClass == Container:
         name, description = container_text_generate(theme, rarity)
-    elif objectClass == ItemModel.Currency:
+    elif objectClass == Currency:
         name, description = currency_text_generate(rarity)
     else:
         print("Object class not recognized.")
@@ -48,18 +51,21 @@ def room_text_generate(theme):
     
     name += prefix + " "
 
-    if (theme == 1):
+    if (theme == theme.PLAINS):
+        print("Debug: Theme is PLAINS")
         noun = random.choice(["Plains", "Grassland", "Grasslands", "Prairie", "Prairies", "Steppe", "Steppes",
                                 "Meadow", "Meadows", "Pasture", "Pastures", "Savanna", "Savannas", "Savannah",
                                 "Savannahs", "Veld", "Velds", "Veldt", "Veldts", "Tundra", "Tundras"])
         name += noun
         description = build_room_description(name)
-    if (theme == 2):
+    elif (theme == theme.FOREST):
+        print("Debug: Theme is FOREST")
         noun = random.choice(["Forest", "Wood", "Woods", "Rainforest", "Woodland", "Thicket", "Timberland",
                               "Grove", "Bush", "Backwoods", "Coppice", "Copse"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 3):
+    elif (theme == theme.MOUNTAIN):
+        print("Debug: Theme is MOUNTAIN")
         noun = random.choice(["Mountain", "Mountains", "Hill", "Hills", "Peak", "Peaks", "Ridge", "Ridges", "Range",
                               "Crest", "Crests", "Summit", "Summits", "Pinnacle", "Pinnacles", "Alp", "Alps",
                               "Alpine", "Alpines", "Alpine Meadow", "Alpine Meadows", "Alpine Pasture",
@@ -72,7 +78,8 @@ def room_text_generate(theme):
                               "Alpine Coppice", "Alpine Coppices", "Alpine Copse"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 4):
+    elif (theme == theme.DESERT):
+        print("Debug: Theme is DESERT")
         noun = random.choice(["Desert", "Deserts", "Badlands", "Badland", "Wasteland", "Wastelands", "Barrens", 
                               "Sands", "Sand", "Dunes", "Dune", "Dust", "Dusts", "Drylands", "Dryland", "Salt Flat",
                                 "Salt Flats", "Salt Pan", "Salt Pans", "Salt Marsh", "Salt Marshes", "Salt Desert",
@@ -82,29 +89,34 @@ def room_text_generate(theme):
                                 "Saltseas", "Salt Sea", "Salt Seas"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 5):
+    elif (theme == theme.SWAMP):
+        print("Debug: Theme is SWAMP")
         noun = random.choice(["Swamp", "Swamps", "Marsh", "Marshes", "Bog", "Bogs", "Fen", "Fens", "Mire", "Mires",
                                 "Wetland", "Wetlands", "Everglade", "Everglades", "Bayou", "Bayous", "Slough", "Sloughs",
                                 "Sluice", "Sluices", "Sump", "Sumps", "Wallow", "Wallows", "Quagmire", "Quagmires"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 6):
+    elif (theme == theme.OCEAN):
+        print("Debug: Theme is OCEAN")        
         noun = random.choice(["Ocean", "Oceans", "Sea", "Seas", "Gulf", "Gulfs", "Bay", "Bays", "Sound", "Sounds"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 7):
+    elif (theme == theme.RIVER):
+        print("Debug: Theme is RIVER")
         noun = random.choice(["River", "Rivers", "Stream", "Streams", "Creek", "Creeks", "Brook", "Brooks", "Rivulet",
                               "Rivulets", "Runnel", "Runnels", "Run", "Runs", "Watercourse", "Watercourses", "Waterway",
                               "Waterways", "Waterfall", "Waterfalls"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 8):
+    elif (theme == theme.LAKE):
+        print("Debug: Theme is LAKE")
         noun = random.choice(["Lake", "Lakes", "Pond", "Ponds", "Pool", "Pools", "Lagoon", "Lagoons", "Loch", "Lochs",
                               "Lough", "Loughs", "Mere", "Meres", "Reservoir", "Reservoirs", "Tarn", "Tarns", "Basin",
                                 "Basins", "Waterhole", "Waterholes"])
         name += noun
         description = build_room_description(name)
-    elif (theme == 9):
+    elif (theme == theme.CAVE):
+        print("Debug: Theme is CAVE")
         noun = random.choice(["Cave", "Caves", "Cavern", "Caverns", "Grotto", "Grottos", "Grottoes", "Grot", "Grots",
                               "Tunnel", "Tunnels", "Burrow", "Burrows", "Den", "Dens", "Hole", "Holes", "Underground",
                                 "Undergrounds", "Underworld", "Underworlds", "Underpass", "Underpasses", "Underway",

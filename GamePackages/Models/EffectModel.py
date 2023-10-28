@@ -9,7 +9,7 @@
 # increases the player's dexterity when the Potion of Dexterity is used, etc. 
 import enum
 
-class Effect(enum):
+class Effect(enum.Enum):
     # CONSUMABLE EFFECTS
     HEAL = 1
     POISON = 2
@@ -52,11 +52,11 @@ class Effect(enum):
     DRAINING = 37 # Drains life from the target and gives it to the wielder / VERY RARE
     # MOB EFFECTS
     PROTECTED = 38 # Mob takes half damage
-    STRENGTHENED = 39 # Mob deals extra damage
+    STRENGTHENEDMOB = 39 # Mob deals extra damage
     FORTIFIED = 40 # Mob has extra health
     ENRAGED = 41 # Mob has extra speed
     INVISIBLE = 42 # Mob is invisible
-    FLYING = 43 # Mob can fly
+    FLYINGMOB = 43 # Mob can fly
     INFERNO = 44 # Mob is on fire
     FROZEN = 45 # Mob is frozen
     # PLAYER EFFECTS

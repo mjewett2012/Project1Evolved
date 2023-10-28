@@ -21,9 +21,8 @@
 # Example:
 # monster = Mob("Goblin", 5, 5, 5, 5, 5, "Dagger", "Leather Armor", 10, 10, 1, 0, 0)
 import pickle
-from Models import InventoryModel
-from Models import ThemeModel
-
+from GamePackages.Models.InventoryModel import Inventory
+from GamePackages.Models.ThemeModel import Theme
 class Mob:
     def __init__(self, mobNum, name, strength, dexterity, intelligence, wisdom, constitution, 
                  weapon, armor, hitPoints, maxHitPoints, magicPoints, maxMagicPoints, level,

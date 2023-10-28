@@ -4,6 +4,9 @@ from GamePackages.DatabaseHandler import DatabaseHandler
 
 def main_game_loop(character):
     while True:
+        # clear the screen
+        GamePackages.GUIFunctions.clear_text()
+
         # Display the current room or situation
         display_current_room(character)
 
@@ -23,6 +26,20 @@ def display_current_room(character):
     db.close()
     room_info = f"{room_data['name']}\n\n{room_data['description']}\n"
     GamePackages.GUIFunctions.display_text_in_gui(room_info, target="main")
+
+    # Initialize exits_info with a default message
+    exits_info = "No visible exits"
+
+    # Displaying exits
+    exits = room_data.get('exits', [])
+    if exits:
+        exits_info = "Exits: "
+        for exit in exits:
+            exits_info += f"{exit}, "
+        exits_info = exits_info.strip(", ")  # Remove trailing comma
+
+    GamePackages.GUIFunctions.display_text_in_gui(exits_info, target="main")
+
 
 def get_player_input():
     # This can be a simple input box or a more complex GUI input method
